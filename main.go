@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	"github.com/gdamore/tcell"
+	"snake/main/game"
 )
 
 func Init() {
-	logFile, err := CLogFile()
+	logFile, err := os.Create("./log.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -18,41 +17,31 @@ func Init() {
 }
 
 func main() {
-	screen, err := tcell.NewScreen()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer screen.Fini()
-
-	if err := screen.Init(); err != nil {
-		log.Fatalln(err)
-	}
-
-	defStyle := tcell.StyleDefault.Background(tcell.ColorDefault).Foreground(tcell.ColorDefault)
-	screen.SetStyle(defStyle)
-
-	screen.Clear()
-
-	w, h := screen.Size()
-
-	screen.SetContent(w-1, h-1, 'H', nil, defStyle)
-
+	screen := game.ScreenInit()
 	for {
 		screen.Show()
-
-		ev := screen.PollEvent()
-
-		switch ev := ev.(type) {
-		case *tcell.EventResize:
-			screen.Sync()
-		case *tcell.EventKey:
-			if ev.Key() == tcell.KeyEscape {
-				os.Exit(0)
-			}
-		}
 	}
-}
+	// defStyle := tcell.StyleDefault.Background(tcell.ColorDefault).Foreground(tcell.ColorDefault)
+	// screen.SetStyle(defStyle)
 
-func CLogFile() (*os.File, error) {
-	return os.Create("./log.txt")
+	// screen.Clear()
+
+	// w, h := screen.Size()
+
+	// screen.SetContent(w-1, h-1, 'H', nil, defStyle)
+
+	// for {
+	// 	screen.Show()
+
+	// 	ev := screen.PollEvent()
+
+	// 	switch ev := ev.(type) {
+	// 	case *tcell.EventResize:
+	// 		screen.Sync()
+	// 	case *tcell.EventKey:
+	// 		if ev.Key() == tcell.KeyEscape {
+	// 			os.Exit(0)
+	// 		}
+	// 	}
+	// }
 }

@@ -8,8 +8,8 @@ type Arena struct {
 	FruitPos []int
 }
 
-func InitArena(screen tcell.Screen, fruitPos []int) Arena {
-	w, h := screen.Size()
+func InitArena(s tcell.Screen, fruitPos []int) Arena {
+	w, h := s.Size()
 	return Arena{
 		w / 2,
 		h / 2,
@@ -17,6 +17,6 @@ func InitArena(screen tcell.Screen, fruitPos []int) Arena {
 	}
 }
 
-func (arena *Arena) RenderArena() {
+func (arena *Arena) RenderArena(s tcell.Screen) {
 
 }
