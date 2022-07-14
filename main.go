@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"snake/main/game"
+
+	"github.com/gdamore/tcell"
 )
 
 func Init() {
@@ -17,31 +19,35 @@ func Init() {
 }
 
 func main() {
-	screen := game.ScreenInit()
+	screen, err := tcell.NewScreen()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer screen.Fini()
+
+	if err := screen.Init(); err != nil {
+		log.Fatalln(err)
+	}
+
+	screen.Clear()
+	arena := game.InitArena(screen, []int{1, 1})
+
 	for {
 		screen.Show()
+
+		screen.PollEvent()
+
+		arena.RenderArena(screen)
 	}
-	// defStyle := tcell.StyleDefault.Background(tcell.ColorDefault).Foreground(tcell.ColorDefault)
-	// screen.SetStyle(defStyle)
 
-	// screen.Clear()
-
-	// w, h := screen.Size()
-
-	// screen.SetContent(w-1, h-1, 'H', nil, defStyle)
-
+	// screen := game.ScreenInit()
+	// arena := game.InitArena(screen, []int{1, 1})
 	// for {
 	// 	screen.Show()
-
 	// 	ev := screen.PollEvent()
+	// 	arena.RenderArena(screen)
 
-	// 	switch ev := ev.(type) {
-	// 	case *tcell.EventResize:
-	// 		screen.Sync()
-	// 	case *tcell.EventKey:
-	// 		if ev.Key() == tcell.KeyEscape {
-	// 			os.Exit(0)
-	// 		}
-	// 	}
+	// 	screen.SetContent(1, 1, 'H', nil, tcell.StyleDefault)
+	// 	game.ProcessInput(ev)
 	// }
 }

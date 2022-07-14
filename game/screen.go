@@ -17,5 +17,8 @@ func ScreenInit() tcell.Screen {
 		log.Fatalln(err)
 	}
 
+	defStyle := tcell.StyleDefault.Background(tcell.ColorDefault).Foreground(tcell.ColorDefault)
+	screen.SetStyle(defStyle)
+
 	return screen
 }

@@ -19,4 +19,7 @@ func InitArena(s tcell.Screen, fruitPos []int) Arena {
 
 func (arena *Arena) RenderArena(s tcell.Screen) {
 
+	style := tcell.Style.Background(tcell.StyleDefault, tcell.ColorDefault).Foreground(tcell.ColorRebeccaPurple)
+	s.SetStyle(style)
+	s.SetContent(1, 1, 'H', nil, style)
 }
