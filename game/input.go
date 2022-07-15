@@ -1,14 +1,13 @@
 package game
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/gdamore/tcell"
 )
 
 var (
-	inMenu = true
+	InMenu = true
 )
 
 func ProcessInput(e tcell.Event, s tcell.Screen) {
@@ -20,12 +19,16 @@ func ProcessInput(e tcell.Event, s tcell.Screen) {
 		}
 	case *tcell.EventMouse:
 		{
-			if inMenu {
+			if InMenu {
 				if e.Buttons() == tcell.Button1 {
 					x, y := e.Position()
-					if y == 5 && (x > 50 && x < 60) { //51-59 5
-						fmt.Println("AFSFSA")
-						inMenu = false
+					if y == 8 && (x > 54 && x < 60) { //51-59 5
+						InMenu = false
+						s.Clear()
+					}
+					if y == 11 && (x > 54 && x < 59) {
+						s.Fini()
+						os.Exit(0)
 					}
 				}
 			}

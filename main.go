@@ -31,27 +31,16 @@ func main() {
 	}
 
 	screen.Clear()
-	// arena := game.InitArena(screen, []int{1, 1})
+	arena := game.InitArena(screen, []int{1, 1})
 
 	for {
 		screen.Show()
 
 		ev := screen.PollEvent()
-
-		menu.RenderMenu(screen, ev)
 		game.ProcessInput(ev, screen)
-
-		// arena.RenderArena(screen)
+		menu.RenderMenu(screen)
+		if !game.InMenu {
+			arena.RenderArena(screen)
+		}
 	}
-
-	// screen := game.ScreenInit()
-	// arena := game.InitArena(screen, []int{1, 1})
-	// for {
-	// 	screen.Show()
-	// 	ev := screen.PollEvent()
-	// 	arena.RenderArena(screen)
-
-	// 	screen.SetContent(1, 1, 'H', nil, tcell.StyleDefault)
-	// 	game.ProcessInput(ev)
-	// }
 }
