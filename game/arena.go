@@ -21,7 +21,6 @@ func (arena *arena) RenderArena(s tcell.Screen) {
 	s.DisableMouse()
 	s.Clear()
 	style := tcell.Style.Background(tcell.StyleDefault, tcell.ColorDefault).Foreground(tcell.ColorDefault)
-	s.SetStyle(style)
 	for i := 30; i < arena.width; i++ {
 		s.SetContent(i, arena.height, '─', nil, style)
 		s.SetContent(i, arena.height-20, '─', nil, style)
