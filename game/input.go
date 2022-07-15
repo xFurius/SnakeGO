@@ -15,6 +15,7 @@ func ProcessInput(e tcell.Event, s tcell.Screen) {
 	case *tcell.EventKey:
 		switch e.Key() {
 		case tcell.KeyEscape:
+			s.Fini()
 			os.Exit(0)
 		}
 	case *tcell.EventMouse:
