@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"snake/main/game"
+	"snake/main/menu"
 
 	"github.com/gdamore/tcell"
 )
@@ -30,14 +31,17 @@ func main() {
 	}
 
 	screen.Clear()
-	arena := game.InitArena(screen, []int{1, 1})
+	// arena := game.InitArena(screen, []int{1, 1})
 
 	for {
 		screen.Show()
 
-		screen.PollEvent()
+		ev := screen.PollEvent()
 
-		arena.RenderArena(screen)
+		menu.RenderMenu(screen, ev)
+		game.ProcessInput(ev, screen)
+
+		// arena.RenderArena(screen)
 	}
 
 	// screen := game.ScreenInit()
