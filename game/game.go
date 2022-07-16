@@ -19,17 +19,17 @@ func Ihasfi() { //need  to change this name obviously
 
 	screen.Clear()
 	arena := InitArena(screen, []int{1, 1})
-	snake := InitSnake(3, 1, []point{
-		{10, 10},
-		{10, 11},
-		{10, 12},
+	snake := InitSnake(1, []point{
+		{35, 10},
+		{35, 11},
+		{35, 12},
 	})
 
 	for {
 		screen.Show()
 
 		ev := screen.PollEvent()
-		ProcessInput(ev, screen)
+		ProcessInput(ev, screen, snake)
 		RenderMenu(screen)
 		if !InMenu {
 			arena.RenderArena(screen)
