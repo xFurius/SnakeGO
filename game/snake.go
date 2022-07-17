@@ -24,10 +24,8 @@ func (snake *snake) renderSnake(s tcell.Screen) {
 }
 
 func (snake *snake) move(s tcell.Screen, direction int) {
-	// TODO: MOVEMENT LOGIC
+	style := tcell.Style.Background(tcell.StyleDefault, tcell.ColorGreen).Foreground(tcell.ColorDefault)
 
-	// style := tcell.Style.Background(tcell.StyleDefault, tcell.ColorGreen).Foreground(tcell.ColorDefault)
-	// for _, v := range snake.body {
-	// 	s.SetContent(v.x, v.y, ' ', nil, style)
-	// }
+	snake.body[0].x++
+	s.SetContent(snake.body[0].x, snake.body[0].y, ' ', nil, style)
 }
