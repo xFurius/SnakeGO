@@ -2,6 +2,7 @@ package game
 
 import (
 	"os"
+	"time"
 
 	"github.com/gdamore/tcell"
 )
@@ -20,6 +21,7 @@ func ProcessInput(e tcell.Event, s tcell.Screen, snake snake) {
 		case tcell.KeyUp:
 			if !InMenu {
 				snake.move(s, 1)
+				time.Sleep(2 * time.Second)
 			}
 		}
 	case *tcell.EventMouse:
